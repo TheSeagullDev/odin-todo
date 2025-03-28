@@ -1,3 +1,15 @@
 .todo {
     border: 1px solid black;
 }
+
+.todo[data-priority="low"] {
+    background-color: #00ff00;
+}
+
+.todo[data-priority="med"] {
+    background-color: #ffff00;
+}
+
+.todo[data-priority="high"] {
+    background-color: #ff0000;
+}

@@ -20,6 +20,10 @@ const DisplayManager = (function() {
         const todoAttributes = todo.getAttributes();
         const todoChildren = [];
         container.appendChild(todoElem);
+        todoElem.dataset.title = todo.getTitle();
+        todoElem.dataset.description = todo.getDescription();
+        todoElem.dataset.priority = todo.getPriority();
+        todoElem.dataset.dueDate = todo.getDueDate();
         for(let i = 0; i < 4; i++) {
             todoChildren.push(document.createElement("div"));
             todoChildren[i].textContent = todoAttributes[i];
