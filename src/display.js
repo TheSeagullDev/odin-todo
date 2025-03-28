@@ -1,10 +1,6 @@
 const DisplayManager = (function() {
     let projects = [];
-    const projectContainer = document.querySelector("body");
-
-    function updateData(newProjects) {
-        projects = newProjects;
-    }
+    const projectContainer = document.querySelector(".content");
 
     function displayProject(project) {
         const container = document.createElement("div");
@@ -20,11 +16,29 @@ const DisplayManager = (function() {
 
     function displayTodo(todo, container) {
         const todoElem = document.createElement("div");
-        todoElem.textContent = todo.getTitle();
+        todoElem.classList.add("todo");
+        const todoAttributes = todo.getAttributes();
+        const todoChildren = [];
         container.appendChild(todoElem);
+        for(let i = 0; i < 4; i++) {
+            todoChildren.push(document.createElement("div"));
+            todoChildren[i].textContent = todoAttributes[i];
+            todoElem.appendChild(todoChildren[i]);
+        }
     }
 
-    return {displayProject, displayTodo, updateData}
+    function clearPage() {
+        projectContainer.innerHTML = "";
+    }
+
+    function displayProjects(projects) {
+        clearPage();
+        for(let i = 0; i < projects.length; i++) {
+            displayProject(projects[i]);
+        }
+    }
+
+    return {displayProjects, displayTodo}
 })();
 
 export default DisplayManager;
