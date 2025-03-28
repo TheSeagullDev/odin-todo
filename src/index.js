@@ -19,11 +19,22 @@ function createTodo(title, description, dueDate, priority) {
 
 DisplayManager.displayProjects(projects);
 
-const button = document.createElement("button");
-button.textContent = "button";
-button.addEventListener("click", () => {
-    projects[0].addToProject(createTodo("dummy title", "dummy description", 1111, Math.random()*20));
+const newTodoBtn = document.querySelector("#new-todo");
+const modal = document.querySelector("dialog");
+const form = document.querySelector("form");
+newTodoBtn.addEventListener("click", () => {
+    modal.showModal();
+});
+
+const modalClose = document.querySelector("#close");
+modalClose.addEventListener("click", () => {
+    modal.close();
+});
+
+const modalSubmit = document.querySelector("#submit");
+modalSubmit.addEventListener("click", () => {
+    projects[0].addToProject(createTodo(form.title.value, form.description.value, form.dueDate.value, form.priority.value));
     DisplayManager.displayProjects(projects);
 });
 
-document.querySelector("body").appendChild(button);
+document.querySelector("body").appendChild(newTodoBtn);
