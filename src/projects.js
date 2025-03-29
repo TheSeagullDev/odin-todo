@@ -1,5 +1,10 @@
+let projectCount = 0;
+
 function createProject(name) {
     const todos = [];
+
+    projectCount++;
+    const index = projectCount - 1;
 
     const getName = () => name;
 
@@ -7,7 +12,9 @@ function createProject(name) {
         todos.push(todo);
     }
 
-    return {getName, addToProject, todos}
+    const getIndex = () => index;
+
+    return {getName, addToProject, todos, getIndex}
 }
 
 const projects = [createProject("default")];
