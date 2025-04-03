@@ -1,5 +1,7 @@
+import { promptForTodo } from "./dom";
+import { deleteProject, projects } from "./projects";
+
 const DisplayManager = (function() {
-    let projects = [];
     const projectContainer = document.querySelector(".content");
 
     function displayProject(project) {
@@ -13,6 +15,19 @@ const DisplayManager = (function() {
         {
             displayTodo(project.todos[i], container);
         }
+        const newTodoButton = document.createElement("button");
+        newTodoButton.textContent = "New Todo";
+        newTodoButton.addEventListener("click", () => {
+            promptForTodo(project);
+        });
+        container.appendChild(newTodoButton);
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete Project";
+        deleteButton.addEventListener("click", () => {
+            deleteProject(project);
+            displayProjects(projects);
+        });
+        container.appendChild(deleteButton);
     }
 
     function displayTodo(todo, container) {

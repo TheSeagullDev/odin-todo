@@ -1,6 +1,7 @@
 let projectCount = 0;
+const projects = [];
 
-function createProject(name) {
+function initializeProject(name) {
     const todos = [];
 
     projectCount++;
@@ -11,12 +12,29 @@ function createProject(name) {
     function addToProject(todo) {
         todos.push(todo);
     }
+    const getIndex = function() {
+        return(projects.indexOf(this));
+    }
 
-    const getIndex = () => index;
-
-    return {getName, addToProject, todos, getIndex}
+    return {getName, addToProject, todos, getIndex};
 }
 
-const projects = [createProject("default")];
+function createProject(name) {
+    const project = initializeProject(name);
+    projects.push(project);
+    return project;
+}
 
-export {projects, createProject};
+function deleteProject(project) {
+    const index = project.getIndex();
+    if(index === 0) {
+        alert("Can't delete default project!");
+    }
+    else if(index > -1) {
+        projects.splice(index, 1);
+    }
+}
+
+createProject("default");
+
+export {projects, createProject, deleteProject};

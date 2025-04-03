@@ -1,25 +1,45 @@
-import { projects } from "./projects";
+import { projects, createProject } from "./projects";
 import createTodo from "./todo.js";
 import DisplayManager from "./display.js";
 
-export default function doDomThings() {
-    const newTodoBtn = document.querySelector("#new-todo");
-    const modal = document.querySelector("dialog");
-    const form = document.querySelector("form");
-    newTodoBtn.addEventListener("click", () => {
-        modal.showModal();
+const toDoModal = document.querySelector(".todo-form-container");
+const projectModal = document.querySelector(".project-form-container");
+const toDoForm = document.querySelector("#todo-form");
+const projectForm = document.querySelector("#project-form");
+
+function initializeDom() {
+    const newProjectBtn = document.querySelector("#new-project");
+
+    newProjectBtn.addEventListener("click", () => {
+        projectModal.showModal();
+    })
+
+    const toDoModalClose = document.querySelector("#todoclose");
+    toDoModalClose.addEventListener("click", () => {
+        toDoModal.close();
     });
 
-    const modalClose = document.querySelector("#close");
-    modalClose.addEventListener("click", () => {
-        modal.close();
+    const projectModalClose = document.querySelector("#projectclose");
+    projectModalClose.addEventListener("click", () => {
+        projectModal.close();
     });
     
-    form.addEventListener("submit", () => {
-        projects[0].addToProject(createTodo(form.title.value, form.description.value, form.dueDate.value, form.priority.value));
+    toDoForm.addEventListener("submit", () => {
+        projects[toDoForm.dataset.project].addToProject(createTodo(toDoForm.todotitle.value, toDoForm.tododescription.value, toDoForm.tododueDate.value, toDoForm.todopriority.value));
         DisplayManager.displayProjects(projects);
-        form.reset();
+        toDoForm.reset();
     });
 
-    document.querySelector("body").appendChild(newTodoBtn);
+    projectForm.addEventListener("submit", () => {
+        createProject(projectForm.projecttitle.value);
+        DisplayManager.displayProjects(projects);
+        projectForm.reset();
+    })
 }
+
+function promptForTodo(project) {
+    toDoForm.dataset.project = project.getIndex();
+    toDoModal.showModal();
+}
+
+export { initializeDom, promptForTodo };
