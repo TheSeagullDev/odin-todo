@@ -38,6 +38,9 @@ const DisplayManager = (function() {
         todoElem.dataset.description = todo.getDescription();
         todoElem.dataset.priority = todo.getPriority();
         todoElem.dataset.dueDate = todo.getDueDate();
+        const done = document.createElement("input");
+        done.type = "checkbox";
+        todoElem.appendChild(done);
         const title = document.createElement("div");
         title.textContent = todo.getTitle();
         todoElem.appendChild(title);
@@ -45,8 +48,16 @@ const DisplayManager = (function() {
         description.textContent = todo.getDescription();
         todoElem.appendChild(description);
         const dueDate = document.createElement("div");
+        dueDate.classList.add("date");
         dueDate.textContent = todo.getDueDate();
         todoElem.appendChild(dueDate);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", () => {
+            projects[container.dataset.project].deleteTodo(todo);
+            displayProjects(projects);
+        })
+        todoElem.appendChild(deleteBtn);
     }
 
     function clearPage() {

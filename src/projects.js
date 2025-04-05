@@ -16,7 +16,14 @@ function initializeProject(name) {
         return(projects.indexOf(this));
     }
 
-    return {getName, addToProject, todos, getIndex};
+    function deleteTodo(todo) {
+        const index = todos.indexOf(todo);
+        if(index > -1) {
+            todos.splice(index, 1);
+        }
+    }
+
+    return {getName, addToProject, todos, getIndex, deleteTodo};
 }
 
 function createProject(name) {

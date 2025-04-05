@@ -13,3 +13,7 @@
 .todo[data-priority="high"] {
     background-color: #ff0000;
 }
+
+.todo:has(input:checked) div:not(:last-child) {
+    text-decoration: line-through;
+}
