@@ -2,6 +2,7 @@ import { createProject, projects } from "./projects";
 import createTodo from "./todo";
 
 function updateLocalStorage(projects) {
+    localStorage.clear();
     for(let i = 0; i < projects.length; i++) {
         const localTodos = [projects[i].getName()];
         for(let j = 0; j < projects[i].todos.length; j++) {
@@ -13,7 +14,7 @@ function updateLocalStorage(projects) {
 }
 
 function retrieveFromStorage(index) {
-    return JSON.parse(localStorage.getItem(localStorage.key(index)));
+    return JSON.parse(localStorage.getItem(`project${index}`));
 }
 
 function initializeInfo() {
@@ -33,6 +34,7 @@ function initializeInfo() {
                 const retrievedTodos = retrieveFromStorage(project).slice(1);
                 console.log(retrievedTodos);
                 createProject(retrieveFromStorage(project)[0]);
+                console.log(projects);
                 for(let todo = 0; todo < retrievedTodos.length; todo++) {
                     const todoObj = retrievedTodos[todo];
                     projects[project].addToProject(createTodo.apply(null, todoObj));

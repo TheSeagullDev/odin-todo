@@ -7,6 +7,7 @@ const DisplayManager = (function() {
 
     function displayProject(project) {
         const container = document.createElement("div");
+        container.classList.add("project");
         container.dataset.project = project.getIndex();
         const title = document.createElement("h2");
         title.textContent = project.getName();
@@ -16,19 +17,22 @@ const DisplayManager = (function() {
         {
             displayTodo(project.todos[i], container);
         }
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("button-container");
+        container.appendChild(btnContainer);
         const newTodoButton = document.createElement("button");
         newTodoButton.textContent = "New Todo";
         newTodoButton.addEventListener("click", () => {
             promptForTodo(project);
         });
-        container.appendChild(newTodoButton);
+        btnContainer.appendChild(newTodoButton);
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete Project";
         deleteButton.addEventListener("click", () => {
             deleteProject(project);
             displayProjects(projects);
         });
-        container.appendChild(deleteButton);
+        btnContainer.appendChild(deleteButton);
     }
 
     function displayTodo(todo, container) {
@@ -49,6 +53,7 @@ const DisplayManager = (function() {
         todoElem.appendChild(done);
         const title = document.createElement("div");
         title.textContent = todo.getTitle();
+        title.classList.add("todotitle");
         todoElem.appendChild(title);
         const description = document.createElement("div");
         description.textContent = todo.getDescription();
