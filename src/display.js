@@ -1,4 +1,5 @@
 import { promptForEdit, promptForTodo } from "./dom";
+import { updateLocalStorage } from "./localstorage";
 import { deleteProject, projects } from "./projects";
 
 const DisplayManager = (function() {
@@ -40,6 +41,11 @@ const DisplayManager = (function() {
         todoElem.dataset.dueDate = todo.getDueDate();
         const done = document.createElement("input");
         done.type = "checkbox";
+        done.checked = todo.getChecked();
+        done.addEventListener("click", () => {
+            todo.toggleChecked();
+            displayProjects(projects);
+        });
         todoElem.appendChild(done);
         const title = document.createElement("div");
         title.textContent = todo.getTitle();
@@ -75,6 +81,7 @@ const DisplayManager = (function() {
         for(let i = 0; i < projects.length; i++) {
             displayProject(projects[i]);
         }
+        updateLocalStorage(projects);
     }
 
     return {displayProjects, displayTodo}

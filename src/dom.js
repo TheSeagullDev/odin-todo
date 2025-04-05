@@ -32,7 +32,7 @@ function initializeDom() {
     });
     
     toDoForm.addEventListener("submit", () => {
-        projects[toDoForm.dataset.project].addToProject(createTodo(toDoForm.todotitle.value, toDoForm.tododescription.value, toDoForm.tododueDate.value, toDoForm.todopriority.value));
+        projects[toDoForm.dataset.project].addToProject(createTodo(toDoForm.todotitle.value, toDoForm.tododescription.value, toDoForm.todopriority.value, toDoForm.tododueDate.value));
         DisplayManager.displayProjects(projects);
         toDoForm.reset();
     });

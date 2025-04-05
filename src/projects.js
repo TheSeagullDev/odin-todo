@@ -34,6 +34,7 @@ function deleteProject(project) {
         alert("Can't delete default project!");
     }
     else if(index > -1) {
+        localStorage.removeItem(`project${index}`);
         projects.splice(index, 1);
     }
 }
