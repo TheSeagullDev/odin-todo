@@ -11,9 +11,16 @@ initializeDom(projects);
 // debugging function
 function dummyTodos(num) {
     for(let i = 1; i <= num; i++) {
-        projects[0].addToProject(createTodo(`Todo ${i}`, `Dummy description ${i}`, `${i}-${i}-25`, "none"));
-        DisplayManager.displayProjects(projects);
+        if(i < 10) {
+            projects[0].addToProject(createTodo(`Todo ${i}`, `Dummy description ${i}`, `2025-0${i}-0${i}`, "none"));
+            DisplayManager.displayProjects(projects);
+        }
+        else
+        {
+            projects[0].addToProject(createTodo(`Todo ${i}`, `Dummy description ${i}`, `2025-${i}-${i}`, "none"));
+            DisplayManager.displayProjects(projects);
+        }
     }
 }
 
-//dummyTodos(5);
+dummyTodos(5);

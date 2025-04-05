@@ -3,7 +3,7 @@ export default function createTodo(title, description, dueDate, priority) {
     const getDescription = () => description;
     const getDueDate = () => dueDate;
     const getPriority = () => priority;
-    const getAttributes = () => [title, description, dueDate, priority];
+    const getAttributes = () => [title, description, priority, dueDate];
 
     const setTitle = (newTitle) => title = newTitle;
     const setDescription = (newDescription) => description = newDescription;

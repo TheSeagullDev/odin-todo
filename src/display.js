@@ -1,4 +1,4 @@
-import { promptForTodo } from "./dom";
+import { promptForEdit, promptForTodo } from "./dom";
 import { deleteProject, projects } from "./projects";
 
 const DisplayManager = (function() {
@@ -51,6 +51,12 @@ const DisplayManager = (function() {
         dueDate.classList.add("date");
         dueDate.textContent = todo.getDueDate();
         todoElem.appendChild(dueDate);
+        const editBtn = document.createElement("button");
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+            promptForEdit(todo);
+        })
+        todoElem.appendChild(editBtn);
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.addEventListener("click", () => {

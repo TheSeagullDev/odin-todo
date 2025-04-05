@@ -1,11 +1,7 @@
-let projectCount = 0;
 const projects = [];
 
 function initializeProject(name) {
     const todos = [];
-
-    projectCount++;
-    const index = projectCount - 1;
 
     const getName = () => name;
 
