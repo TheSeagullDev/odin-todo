@@ -1,5 +1,9 @@
 export default function createTodo(title, description, priority, dueDate, checked = false) {
 
+    if(!description) {
+        description = "No description";
+    }
+
     const getTitle = () => title;
     const getDescription = () => description;
     const getDueDate = () => dueDate;
