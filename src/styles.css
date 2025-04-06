@@ -40,15 +40,15 @@ body {
     grid-row: 1 / 3;
 }
 
-.todo[data-priority="low"] {
+.todo[data-priority="low"], option[value="low"] {
     background-color: #7bf1a7;
 }
 
-.todo[data-priority="med"] {
+.todo[data-priority="med"], option[value="med"] {
     background-color: #fef186;
 }
 
-.todo[data-priority="high"] {
+.todo[data-priority="high"], option[value="high"] {
     background-color: #ffa2a3;
 }
 
@@ -69,7 +69,7 @@ body {
     margin-top: auto;
 }
 
-button {
+button, input[type="button"], input[type="submit"] {
     background-color: #4591d3;
     border: none;
     color: #ffffff;
@@ -77,6 +77,24 @@ button {
     padding: 10px;
 }
 
-button:hover {
+button:hover, input[type="button"]:hover, input[type="submit"]:hover {
     background-color: #6ba3d4;
+}
+
+dialog {
+    background-color: #d6e7f5;
+    border: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }

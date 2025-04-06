@@ -39,6 +39,6 @@ function deleteProject(project) {
     }
 }
 
-createProject("default");
+createProject("Home");
 
 export {projects, createProject, deleteProject};
